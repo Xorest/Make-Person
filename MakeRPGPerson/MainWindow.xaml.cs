@@ -48,19 +48,6 @@ namespace MakeRPGPerson
             ButtonBack.Visibility = Main.Content == Pages.First() ? Visibility.Hidden : Visibility.Visible;
             ButtonNext.Content = Main.Content == Pages.Last() ? ButtonNext.Content = "Ок" : ButtonNext.Content = "Дальше";
         }
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Trace.WriteLine("Name: " + Person.Name);
-            Trace.WriteLine("Age: " + Person.Age);
-            Trace.WriteLine("Class: " + Person.Classification);
-
-            foreach (var s in Person.Skills) 
-            {
-                Trace.Write(s + " | ");
-            }
-
-            updateButton();
-        }
         private void ButtonNext_Click(object sender, RoutedEventArgs e)
         {
             if (Main.Content != Pages.Last())
@@ -77,6 +64,7 @@ namespace MakeRPGPerson
                 string jsonString = JsonSerializer.Serialize(Person);
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.Filter = "Text file (*.txt)|*.txt";
+
                 if (saveFileDialog.ShowDialog() == true)
                     File.WriteAllText(saveFileDialog.FileName, jsonString);
             }

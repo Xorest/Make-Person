@@ -1,8 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Windows;
 using System.Windows.Controls;
-using System.Linq;
 using System;
 
 namespace MakeRPGPerson
@@ -38,16 +35,6 @@ namespace MakeRPGPerson
                 }
             }
         }
-        private void Button_Click(object sender, RoutedEventArgs e) //todo del
-        {
-            //foreach (var s in Skills) 
-            //{
-            //    Trace.WriteLine(s);
-            //}
-            //Trace.WriteLine("================================");
-            UpdateListView();
-        }
-
         private void ListViewSkills_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ListView listView = (ListView)sender;
@@ -60,7 +47,6 @@ namespace MakeRPGPerson
 
             UpdateListView();
         }
-
         private void ListViewSkills_LayoutUpdated(object sender, EventArgs e)
         {
             UpdateListView();

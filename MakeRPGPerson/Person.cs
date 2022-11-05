@@ -8,7 +8,7 @@ namespace MakeRPGPerson
     {
         public Person()
         {
-            Name = "Name";
+            Name = "Имя";
             Skills = new List<string>();
         }
         public string Name { get; set; }
