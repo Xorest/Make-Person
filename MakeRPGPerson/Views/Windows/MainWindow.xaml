@@ -5,20 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MakeRPGPerson"
         mc:Ignorable="d"
+        xmlns:vm="clr-namespace:MakeRPGPerson.ViewModels"
         Title="MainWindow" Height="500" Width="400">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" >Make Person</Label>
-        <Frame Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="Main" Margin="0,35,0,0" LayoutUpdated="Main_LayoutUpdated" NavigationUIVisibility="Hidden"/>
-        <Button Grid.Row="2" x:Name="ButtonNext" Grid.Column="1" Click="ButtonNext_Click" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="10,10,10,10" FontSize="18" MinWidth="90" >Дальше</Button>
-        <Button Grid.Row="2" x:Name="ButtonBack" Grid.Column="0" Click="ButtonBack_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10,10,10,10" MinWidth="90" FontSize="18" >Назад</Button>
-    </Grid>
+    <Window.DataContext>
+        <vm:MainWindowViewModel/>
+    </Window.DataContext>
+    <DockPanel>
+        <UniformGrid  DockPanel.Dock="Bottom" Rows="1" Margin="0,3">
+            <UniformGrid.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="../../Resources/Style/Buttons.xaml"/>
+                    </ResourceDictionary.MergedDictionaries>
+                </ResourceDictionary>
+            </UniformGrid.Resources>
+            <Button Content="Назад" Command="{Binding BakсPageCommand}"/>
+            <Button Content="Далее" Command="{Binding NextPageCommand}"/>
+        </UniformGrid>
+        <StackPanel Orientation="Vertical">
+            <Label Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="18" >Make Person</Label>
+            <Frame Grid.ColumnSpan="2" x:Name="Main" Margin="0,35,0,0" NavigationUIVisibility="Hidden" Content="{Binding SelectedPage}"/>
+        </StackPanel>
+    </DockPanel>
 </Window>

@@ -8,15 +8,17 @@ namespace MakeRPGPerson
 {
     public partial class PageDataPerson : Page
     {
-        public Person Person { get; set; }
-        public MangerSkills MangerSkills { get; set; }
-        public PageDataPerson(Person person, MangerSkills mangerSkills)
+        //public Person Person { get; set; }
+        //public MangerSkills MangerSkills { get; set; }
+
+       // public PageDataPerson(Person person, MangerSkills mangerSkills)
+        public PageDataPerson()
         {
             InitializeComponent();
-            Person = person;
-            MangerSkills = mangerSkills;
-            InitaializeComboBox();
-            DataContext = this;
+            //Person = person;
+            //MangerSkills = mangerSkills;
+            //InitaializeComboBox();
+            //DataContext = this;
         }
         private void InitaializeComboBox() 
         {
@@ -41,8 +43,8 @@ namespace MakeRPGPerson
         private void ComboBoxClassPerson_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBox comboBox = (ComboBox)sender;
-            Person.Skills.Clear();
-            MangerSkills.updateAvailableSkills(Converter.StringToPersonClassConverter(comboBox.SelectedItem.ToString()));
+            //Person.Skills.Clear();
+            //MangerSkills.updateAvailableSkills(Converter.StringToPersonClassConverter(comboBox.SelectedItem.ToString()));
         }
     }
 }

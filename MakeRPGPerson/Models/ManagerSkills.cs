@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using MakeRPGPerson.Models;
 
-namespace MakeRPGPerson
+namespace MakeRPGPerson.Models
 {
     public class MangerSkills
     {
@@ -15,11 +14,11 @@ namespace MakeRPGPerson
         }
         public void updateAvailableSkills(PersonClass? Classification)
         {
-            if (Classification != null) 
+            if (Classification != null)
             {
                 availableSkills.Clear();
 
-                foreach (var s in mapSkills[(PersonClass)Classification]) 
+                foreach (var s in mapSkills[(PersonClass)Classification])
                 {
                     availableSkills.Add(s);
                 }
