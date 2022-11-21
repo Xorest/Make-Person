@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MakeRPGPerson
+namespace MakeRPGPerson.Models
 {
     public enum PersonClass { Org, Druid, Paladin }
     public class Person

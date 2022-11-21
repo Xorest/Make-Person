@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using System;
+using MakeRPGPerson.Models;
 
 namespace MakeRPGPerson
 {

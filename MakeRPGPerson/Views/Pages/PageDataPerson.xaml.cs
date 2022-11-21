@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Text.RegularExpressions;
+using MakeRPGPerson.Models;
 
 namespace MakeRPGPerson
 {
