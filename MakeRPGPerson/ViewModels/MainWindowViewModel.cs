@@ -2,17 +2,13 @@
 using MakeRPGPerson.Models;
 using MakeRPGPerson.ViewModels.Base;
 using Microsoft.Win32;
-using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Markup;
 
 namespace MakeRPGPerson.ViewModels
 {
@@ -20,7 +16,7 @@ namespace MakeRPGPerson.ViewModels
     {
         private Person Person;
         private List<Page> Pages;
-        private MangerSkills ManagerSkills;
+        private ManagerSkills ManagerSkills;
 
         #region SelectedPage
         private Page _SelectedPage;
@@ -32,7 +28,6 @@ namespace MakeRPGPerson.ViewModels
         #endregion
 
         #region Commands
-
         #region BakсPageCommand
         public ICommand BakсPageCommand { get; }
         private bool CanBakсPageCommandExecute(object p) => SelectedPage != Pages.First();
@@ -46,7 +41,6 @@ namespace MakeRPGPerson.ViewModels
             }
         }
         #endregion
-
         #region NextPageCommand
         public ICommand NextPageCommand { get; }
         private bool CanNextPageCommandExecute(object p) => true;
@@ -73,45 +67,28 @@ namespace MakeRPGPerson.ViewModels
             }
 }
         #endregion
-
-        #region TestCommand
-        public ICommand TestCommand { get; }
-        private bool CanTestCommandExecute(object p) => true;
-        private void OnTestCommandExecuted(object p)
-        {
-            Trace.WriteLine($"Name: {Person.Name}, Age: {Person.Age}, Classification: {Person.Classification}");
-
-            foreach (var s in Person.Skills)
-            {
-                Trace.Write($" {s},");
-            }
-        }
-        #endregion
-
         #endregion
 
 
         public MainWindowViewModel()
         {
             Person = new Person();
-            ManagerSkills = new MangerSkills();
+            ManagerSkills = new ManagerSkills();
             initPages();
             SelectedPage = Pages.First();
             #region Commands
             BakсPageCommand = new LambdaCommand(OnBakсPageCommandExecuted, CanBakсPageCommandExecute);
             NextPageCommand = new LambdaCommand(OnNextPageCommandExecuted, CanNextPageCommandExecute);
-            TestCommand = new LambdaCommand(OnTestCommandExecuted, CanTestCommandExecute);
             #endregion
-
         }
 
         private void initPages()
         {
             Pages = new List<Page>();
-            PageDataPerson pageDataPerson = new PageDataPerson();//Person, ManagerSkills);
-            pageDataPerson.SetDataContext(new PageDataPersonViewModel(Person, ManagerSkills));
-            Trace.WriteLine(pageDataPerson.GetType());
-            Page pageSkillsPreson = new PageSkillsPerson(Person, ManagerSkills.availableSkills);
+            PageDataPerson pageDataPerson = new PageDataPerson();
+            pageDataPerson.SetDataContext(new PageDataPersonViewModel(Person));
+            PageSkillsPerson pageSkillsPreson = new PageSkillsPerson();
+            pageSkillsPreson.SetDataContext(new PageSkillsPersonViewModel(Person, ManagerSkills.mapSkills));
             Pages.Add(pageDataPerson);
             Pages.Add(pageSkillsPreson);
         }

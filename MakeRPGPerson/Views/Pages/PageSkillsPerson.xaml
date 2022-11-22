@@ -4,17 +4,43 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:MakeRPGPerson"
+      xmlns:vm="clr-namespace:MakeRPGPerson.ViewModels" 
+      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="PageSkillsPerson">
-
     <Grid>
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="../../Resources/Style/Labels.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,10,0,10"  Content="{Binding Person.Classification}" FontSize="20"></Label>
-        <ListView x:Name ="ListViewSkills" ItemsSource="{Binding Skills}" Grid.Row="1" Margin="10,10,10,10" SelectionMode="Multiple" LayoutUpdated="ListViewSkills_LayoutUpdated" SelectionChanged="ListViewSkills_SelectionChanged">
+        <Label Grid.Row="0"
+               VerticalAlignment="Center" 
+               HorizontalAlignment="Center"
+               Margin="0,10,0,10"  
+               Content="{Binding Person.Classification}"
+               FontSize="20"></Label>
+        <ListView x:Name ="ListViewSkills" 
+                  ItemsSource="{Binding Skills}" 
+                  SelectionMode="Multiple" 
+                  Grid.Row="1" Margin="10,10,10,10">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="SelectionChanged">
+                    <i:InvokeCommandAction Command="{Binding ListViewSkillsSelectionChangedCommand}" 
+                                           CommandParameter="{Binding ElementName=ListViewSkills}"/>
+                </i:EventTrigger>
+                <i:EventTrigger EventName="Loaded">
+                    <i:InvokeCommandAction Command="{Binding ListViewSkillsLoadedCommand}" 
+                                           CommandParameter="{Binding ElementName=ListViewSkills}"/>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
         </ListView>
     </Grid>
 </Page>

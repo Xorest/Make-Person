@@ -3,26 +3,12 @@ using System.Collections.ObjectModel;
 
 namespace MakeRPGPerson.Models
 {
-    public class MangerSkills
+    public class ManagerSkills
     {
         public Dictionary<PersonClass, List<string>> mapSkills;
-        public ObservableCollection<string> availableSkills { get; set; }
-        public MangerSkills()
+        public ManagerSkills()
         {
-            availableSkills = new ObservableCollection<string>();
             initSkills();
-        }
-        public void updateAvailableSkills(PersonClass? Classification)
-        {
-            if (Classification != null)
-            {
-                availableSkills.Clear();
-
-                foreach (var s in mapSkills[(PersonClass)Classification])
-                {
-                    availableSkills.Add(s);
-                }
-            }
         }
         private void initSkills()
         {

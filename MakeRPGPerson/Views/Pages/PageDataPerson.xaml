@@ -9,9 +9,6 @@
       xmlns:model="clr-namespace:MakeRPGPerson.Models"
       d:DesignHeight="300" d:DesignWidth="600"
       Title="PageDataPerson">
-    <Page.DataContext>
-        <vm:PageDataPersonViewModel/>
-    </Page.DataContext>
     <Grid Margin="10,10,10,10" >
         <Grid.Resources>
             <ResourceDictionary>

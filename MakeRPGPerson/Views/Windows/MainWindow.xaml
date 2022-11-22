@@ -11,7 +11,6 @@
         <vm:MainWindowViewModel/>
     </Window.DataContext>
     <DockPanel>
-        <Button Content="Test" Command="{Binding TestCommand}"></Button>
         <UniformGrid  DockPanel.Dock="Bottom" Rows="1" Margin="0,3">
             <UniformGrid.Resources>
                 <ResourceDictionary>
