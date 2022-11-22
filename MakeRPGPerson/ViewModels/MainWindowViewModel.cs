@@ -74,6 +74,20 @@ namespace MakeRPGPerson.ViewModels
 }
         #endregion
 
+        #region TestCommand
+        public ICommand TestCommand { get; }
+        private bool CanTestCommandExecute(object p) => true;
+        private void OnTestCommandExecuted(object p)
+        {
+            Trace.WriteLine($"Name: {Person.Name}, Age: {Person.Age}, Classification: {Person.Classification}");
+
+            foreach (var s in Person.Skills)
+            {
+                Trace.Write($" {s},");
+            }
+        }
+        #endregion
+
         #endregion
 
 
@@ -86,6 +100,7 @@ namespace MakeRPGPerson.ViewModels
             #region Commands
             BakсPageCommand = new LambdaCommand(OnBakсPageCommandExecuted, CanBakсPageCommandExecute);
             NextPageCommand = new LambdaCommand(OnNextPageCommandExecuted, CanNextPageCommandExecute);
+            TestCommand = new LambdaCommand(OnTestCommandExecuted, CanTestCommandExecute);
             #endregion
 
         }
@@ -93,7 +108,8 @@ namespace MakeRPGPerson.ViewModels
         private void initPages()
         {
             Pages = new List<Page>();
-            Page pageDataPerson = new PageDataPerson();//Person, ManagerSkills);
+            PageDataPerson pageDataPerson = new PageDataPerson();//Person, ManagerSkills);
+            pageDataPerson.SetDataContext(new PageDataPersonViewModel(Person, ManagerSkills));
             Trace.WriteLine(pageDataPerson.GetType());
             Page pageSkillsPreson = new PageSkillsPerson(Person, ManagerSkills.availableSkills);
             Pages.Add(pageDataPerson);

@@ -13,6 +13,15 @@
         <vm:PageDataPersonViewModel/>
     </Page.DataContext>
     <Grid Margin="10,10,10,10" >
+        <Grid.Resources>
+            <ResourceDictionary>
+                <ResourceDictionary.MergedDictionaries>
+                    <ResourceDictionary Source="../../Resources/Style/Labels.xaml"/>
+                    <ResourceDictionary Source="../../Resources/Style/TextBoxs.xaml"/>
+                    <ResourceDictionary Source="../../Resources/Style/ComboBoxs.xaml"/>
+                </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
@@ -22,11 +31,19 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" >Имя</Label>
-        <TextBox x:Name="TextBoxPersonName" Grid.Row="0" Grid.Column="1" FontSize="18" VerticalAlignment="Center"  GotMouseCapture="TextBoxPersonName_GotMouseCapture"  Text="{Binding Person.Name}" Margin="10,10,10,10" />
-        <Label Grid.Row="1" Grid.Column="0" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" >Возрост</Label>
-        <TextBox x:Name="TextBoxPersonAge" Grid.Row="1" Grid.Column="1" FontSize="18" VerticalAlignment="Center" MaxLength="2" PreviewTextInput="TextBoxPersonAge_PreviewTextInput"  GotMouseCapture="TextBoxPersonAge_GotMouseCapture" Text="{Binding Person.Age}" Margin="10,10,10,10" />
-        <Label Grid.Row="2" Grid.Column="0" FontSize="18" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0,0,0" >Класс</Label>
-        <ComboBox x:Name="ComboBoxClassPerson" Grid.Row="2" Grid.Column="1" FontSize="18" VerticalAlignment="Center" Margin="10,10,10,10" ItemsSource="{Binding Source=model:PersonClass}" Text="{Binding Person.Classification}" SelectionChanged="ComboBoxClassPerson_SelectionChanged"/>
+        <Label Grid.Row="0" Grid.Column="0" Content="Имя"/>
+        <TextBox x:Name="TextBoxPersonName" 
+                 Grid.Row="0" Grid.Column="1"  
+                 GotMouseCapture="TextBoxPersonName_GotMouseCapture" 
+                 Text="{Binding Person.Name}" />
+        <Label Grid.Row="1" Grid.Column="0" Content="Возрост"/>
+        <TextBox x:Name="TextBoxPersonAge" 
+                 Grid.Row="1" Grid.Column="1"
+                 MaxLength="2" 
+                 PreviewTextInput="TextBoxPersonAge_PreviewTextInput" 
+                 GotMouseCapture="TextBoxPersonAge_GotMouseCapture" 
+                 Text="{Binding Person.Age}" />
+        <Label Grid.Row="2" Grid.Column="0" Content="Класс"/>
+        <ComboBox x:Name="ComboBoxClassPerson" Grid.Row="2" Grid.Column="1" Text="{Binding Person.Classification}"/>
    </Grid>
 </Page>

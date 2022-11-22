@@ -3,22 +3,20 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Text.RegularExpressions;
 using MakeRPGPerson.Models;
+using MakeRPGPerson.ViewModels.Base;
 
 namespace MakeRPGPerson
 {
     public partial class PageDataPerson : Page
     {
-        //public Person Person { get; set; }
-        //public MangerSkills MangerSkills { get; set; }
-
-       // public PageDataPerson(Person person, MangerSkills mangerSkills)
         public PageDataPerson()
         {
             InitializeComponent();
-            //Person = person;
-            //MangerSkills = mangerSkills;
-            //InitaializeComboBox();
-            //DataContext = this;
+            InitaializeComboBox();
+        }
+        public void SetDataContext(ViewModel model) 
+        {
+            DataContext = model;
         }
         private void InitaializeComboBox() 
         {
@@ -39,12 +37,6 @@ namespace MakeRPGPerson
         {
             TextBox textBox = (TextBox)sender;
             textBox.SelectAll();
-        }
-        private void ComboBoxClassPerson_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ComboBox comboBox = (ComboBox)sender;
-            //Person.Skills.Clear();
-            //MangerSkills.updateAvailableSkills(Converter.StringToPersonClassConverter(comboBox.SelectedItem.ToString()));
         }
     }
 }
