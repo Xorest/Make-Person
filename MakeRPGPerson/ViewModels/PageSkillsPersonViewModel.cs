@@ -90,9 +90,6 @@ namespace MakeRPGPerson.ViewModels
             ListViewSkillsLoadedCommand = new LambdaCommand(OnListViewSkillsLoadedCommandExecuted, CanListViewSkillsLoadedCommandExecute);
             #endregion
         }
-        private void UpdateSkills(PersonClass classification) 
-        {
-            Skills = MapSkills[classification]; 
-        }
+        private void UpdateSkills(PersonClass classification) => Skills = MapSkills[classification]; 
     }
 }

@@ -15,13 +15,8 @@ namespace MakeRPGPerson.ViewModels
         {
             get => _Person;
             set => Set(ref _Person, value);
-
         }
         #endregion
-        public PageDataPersonViewModel(Person person)
-        {
-            Person = person;
-        }
-
+        public PageDataPersonViewModel(Person person) => Person = person;
     }
 }

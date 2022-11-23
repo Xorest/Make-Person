@@ -12,9 +12,7 @@ namespace MakeRPGPerson.Infrastructure.Commands
             _Execute = Execute ?? throw new ArgumentNullException(nameof(Execute));
             _CanExecute = CanExecute;
         }
-
         public override bool CanExecute(object? parameter) => _CanExecute?.Invoke(parameter) ?? true;
-
         public override void Execute(object? parameter) => _Execute(parameter);
     }
 }

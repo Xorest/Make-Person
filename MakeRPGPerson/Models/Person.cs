@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
+﻿using System.Collections.Generic;
 
 namespace MakeRPGPerson.Models
 {
@@ -18,6 +15,7 @@ namespace MakeRPGPerson.Models
         }
         public string Name { get; set; }
         public int Age { get; set; }
+        #region Classification
         private PersonClass _Classification;
         public PersonClass Classification 
         {
@@ -29,6 +27,7 @@ namespace MakeRPGPerson.Models
                 ClassificationUpdate.Invoke(_Classification);
             }
         }
+        #endregion
         public List<string> Skills { get; set; }
 
     }

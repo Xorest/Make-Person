@@ -30,7 +30,8 @@
         <ListView x:Name ="ListViewSkills" 
                   ItemsSource="{Binding Skills}" 
                   SelectionMode="Multiple" 
-                  Grid.Row="1" Margin="10,10,10,10">
+                  Grid.Row="1" Margin="10,10,10,10"
+                  SelectedIndex="0">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
                     <i:InvokeCommandAction Command="{Binding ListViewSkillsSelectionChangedCommand}" 

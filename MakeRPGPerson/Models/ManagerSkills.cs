@@ -1,15 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace MakeRPGPerson.Models
 {
     public class ManagerSkills
     {
         public Dictionary<PersonClass, List<string>> mapSkills;
-        public ManagerSkills()
-        {
-            initSkills();
-        }
+        public ManagerSkills() => initSkills();
         private void initSkills()
         {
             mapSkills = new Dictionary<PersonClass, List<string>>();
