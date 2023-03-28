@@ -1,0 +1,26 @@
+name: Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      cleanup:
+        description: 'Cleanup before build'
+        type: boolean
+        required: true
+        default: true
+      debug:
+        description: 'Make debug build'
+        type: boolean
+        required: true
+        default: false
+
+jobs:
+  build-job:
+    runs-on: [self-hosted, windows]
+
+    steps:
+    
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: ${{ steps.commonBuildVars.outputs.dotnetVersion }}
