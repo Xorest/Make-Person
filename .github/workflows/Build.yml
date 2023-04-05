@@ -1,26 +1,35 @@
 name: Build
 
-on:
-  workflow_dispatch:
-    inputs:
-      cleanup:
-        description: 'Cleanup before build'
-        type: boolean
-        required: true
-        default: true
-      debug:
-        description: 'Make debug build'
-        type: boolean
-        required: true
-        default: false
+on: push
 
 jobs:
   build-job:
-    runs-on: [self-hosted, windows]
-
+    runs-on: windows-latest
+    outputs:
+      buildRunner: ${{runner.name}}
+    steps:
+      - name: Install .NET Core
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ steps.commonBuildVars.outputs.dotnetVersion }}
+    
+      - name: Get project
+        uses: actions/checkout@v3
+        with: 
+          fetch-depth: 0
+      - name: list  
+        run: dir
+        
+  post-build-job:
+    runs-on: ubuntu-latest
+    needs: build-job
+    
     steps:
     
-    - name: Install .NET Core
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: ${{ steps.commonBuildVars.outputs.dotnetVersion }}
+    - name: Hellow
+      shell: bash
+      run: echo "hello"
+      
+    - name: get Runner
+      run: echo "${{ needs.build-job.outputs.buildRunner }}"
+   
