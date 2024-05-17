@@ -1,19 +1,13 @@
 name: .NET Core Desktop
 
 on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
   workflow_dispatch:
-    inputs:
-      cleanup:
-        description: 'Cleanup before build'
-        type: boolean
-        required: true
-        default: true
-      debug:
-        description: 'Make debug build'
-        type: boolean
-        required: true
-        default: false
-
+  
 jobs:
   build:
     runs-on: windows-latest 
