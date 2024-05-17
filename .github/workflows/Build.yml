@@ -2,14 +2,16 @@ name: Build
 
 on: 
   push:
-    branches:
-      - '**'
-    tags-ignore:
-      - '**'
+    branches: [ "master" ]
   pull_request:
-    branches:
-      - '**'
+    branches: [ "master" ]
   workflow_dispatch:
+    inputs:
+      cleanup:
+        description: 'Cleanup before build'
+        type: boolean
+        required: true
+        default: true
 
 jobs:
   build-job:
@@ -17,17 +19,34 @@ jobs:
     outputs:
       buildRunner: ${{runner.name}}
     steps:
-      - name: Install .NET Core
-        uses: actions/setup-dotnet@v3
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
-          dotnet-version: ${{ steps.commonBuildVars.outputs.dotnetVersion }}
-    
-      - name: Get project
-        uses: actions/checkout@v3
-        with: 
+          submodules: recursive
           fetch-depth: 0
+          clean: ${{ inputs.cleanup }}
+
       - name: list  
         run: dir
+
+      - name: Install .NET Core
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ steps.commonBuildVars.outputs.dotnetVersion }}
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0.300' 
+
+      - name: Setup MSBuild.exe
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build solution
+        run: dotnet build --configuration Release --no-restore
         
   post-build-job:
     runs-on: ubuntu-latest
@@ -37,7 +56,7 @@ jobs:
     
     - name: Hellow
       shell: bash
-      run: echo "hello"
+      run: echo "End"
       
     - name: get Runner
       run: echo "${{ needs.build-job.outputs.buildRunner }}"
