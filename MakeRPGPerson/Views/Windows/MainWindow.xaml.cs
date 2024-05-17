@@ -16,6 +16,7 @@ namespace MakeRPGPerson
         public MainWindow()
         {
             InitializeComponent();
+            Add test Error for test
         }
     }
 }
