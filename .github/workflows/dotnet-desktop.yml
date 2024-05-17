@@ -20,7 +20,7 @@ jobs:
       runnerName: ${{ runner.name }}
 
     env:
-      Solution_Name: Make-Person/MakeRPGPerson/MakeRPGPerson.csproj
+      Solution_Name: MakeRPGPerson.sln
                      
     steps:
     - name: Checkout
